@@ -1,0 +1,85 @@
+<!DOCTYPE CrossStudio_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints">
+  <BreakpointListItem trigger="" line="286" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="../../../mesh/prov/src/prov_utils.c" useHWbreakpoint="false"/>
+  <BreakpointListItem trigger="" line="720" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="../../../mesh/gatt/src/proxy.c" useHWbreakpoint="false"/>
+ </Breakpoints>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
+ </FrameBufferWindow>
+ <Memory1>
+  <MemoryWindow addressSpace="" dataSize="1" autoEvaluate="0" viewMode="0" addressOrder="0" columnsText="" refreshPeriod="0" name="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" radix="16" sizeText="" addressText="0x20003780"/>
+ </Memory1>
+ <Memory2>
+  <MemoryWindow addressSpace="" dataSize="1" autoEvaluate="0" viewMode="0" addressOrder="0" columnsText="" refreshPeriod="0" name="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" radix="16" sizeText="" addressText=""/>
+ </Memory2>
+ <Memory3>
+  <MemoryWindow addressSpace="" dataSize="1" autoEvaluate="0" viewMode="0" addressOrder="0" columnsText="" refreshPeriod="0" name="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" radix="16" sizeText="" addressText=""/>
+ </Memory3>
+ <Memory4>
+  <MemoryWindow addressSpace="" dataSize="1" autoEvaluate="0" viewMode="0" addressOrder="0" columnsText="" refreshPeriod="0" name="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" radix="16" sizeText="" addressText=""/>
+ </Memory4>
+ <Project>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Access"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Application"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Bearer"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Configuration Model"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Core"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;GATT"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Generic OnOff Model"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Health Model"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Mesh stack"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;nRF5 SDK"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Provisioning"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;SEGGER RTT"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Thingy"/>
+  <ProjectSessionItem path="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0;Toolchain"/>
+ </Project>
+ <Register1>
+  <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context;CPU" name="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" decimalNodes="" octalNodes="" unsignedNodes=""/>
+ </Register1>
+ <Register2>
+  <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context" name="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" decimalNodes="" octalNodes="" unsignedNodes=""/>
+ </Register2>
+ <Register3>
+  <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context" name="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" decimalNodes="" octalNodes="" unsignedNodes=""/>
+ </Register3>
+ <Register4>
+  <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context" name="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" decimalNodes="" octalNodes="" unsignedNodes=""/>
+ </Register4>
+ <TraceWindow>
+  <Trace enabled="Yes"/>
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never">
+   <Watchpoint numelements="0" expression="p_evt->params.output_request.p_data" evalMode="0" name="p_evt->params.output_request.p_data" radix="-1" linenumber="184" filename="src/mesh_provisionee.c" list=""/>
+   <Watchpoint numelements="0" expression="p_evt->params.output_request.size" evalMode="0" name="p_evt->params.output_request.size" radix="-1" linenumber="0" filename="../proxy_server - Demo" list=""/>
+   <Watchpoint numelements="0" expression="m_prov_ctx" evalMode="0" name="m_prov_ctx" radix="-1" linenumber="142" filename="src/mesh_provisionee.c" list=""/>
+  </Watches>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never"/>
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never"/>
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never"/>
+ </Watch4>
+ <Files>
+  <SessionOpenFile windowGroup="DockEditLeft" x="5" y="196" useTextEdit="1" useBinaryEdit="0" left="0" path="src/mesh_provisionee.c" debugPath="src/mesh_provisionee.c" selected="1" top="180" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="318" useTextEdit="1" useBinaryEdit="0" left="0" path="src/main.c" debugPath="src/main.c" selected="0" top="274" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="79" useTextEdit="1" useBinaryEdit="0" left="0" path="include/my_mesh_provisionee.h" debugPath="include/my_mesh_provisionee.h" selected="0" top="72" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="195" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/prov/api/nrf_mesh_prov_types.h" debugPath="../../../mesh/prov/api/nrf_mesh_prov_types.h" selected="0" top="157" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="87" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../external/ThingySDKv2.1/source/drivers/drv_ext_light.c" debugPath="../../../external/ThingySDKv2.1/source/drivers/drv_ext_light.c" selected="0" top="52" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="96" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/prov/src/prov_utils.c" debugPath="../../../mesh/prov/src/prov_utils.c" selected="0" top="67" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="90" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/core/src/rand.c" debugPath="../../../mesh/core/src/rand.c" selected="0" top="68" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="242" useTextEdit="1" useBinaryEdit="0" left="0" path="model/generic_on_off/src/generic_on_off_client.c" debugPath="model/generic_on_off/src/generic_on_off_client.c" selected="0" top="209" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="63" useTextEdit="1" useBinaryEdit="0" left="0" path="model/generic_on_off/src/generic_on_off_server.c" debugPath="model/generic_on_off/src/generic_on_off_server.c" selected="0" top="60" codecName="Default"/>
+ </Files>
+ <ARMCrossStudioWindow activeProject="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/NordicSDK/MESH_v2.0.1/examples/light_switch/proxy_server - ThingyDemo - GenericOnOff/model/generic_on_off/src" debugSearchPath="" autoConnectCapabilities="3199"/>
+</session>
