@@ -37,7 +37,7 @@ The proprietary simple OnOff model was replaced with a simplified version of SIG
 - 2x5 1.27mm SWD cable
 - Nordic Thingy:52 
 - Nordic Thingy:52 SDK v2.1.0
-    - [https://github.com/NordicSemiconductor/Nordic-Thingy52-FW](https://github.com/NordicSemiconductor/Nordic-Thingy52-FW "Github link")
+    - [https://github.com/NordicSemiconductor/Nordic-Thingy52-FW/releases](https://github.com/NordicSemiconductor/Nordic-Thingy52-FW/releases"Github link")
 - Nordic nRF5 SDK for Mesh v2.0.1
     - [https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF5-SDK-for-Mesh](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF5-SDK-for-Mesh "nRF-Mesh-SDK")
 - Segger Embedded Studio 
