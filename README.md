@@ -57,7 +57,7 @@ To compile the demo firmware and run the demo, please follow the steps:
 
 ### Known issues
  - There is a bug with iOS app so it won't work with BLINK authentication, that's why NUMMERIC version is provided. Since the Thingy doesn't have any display it will blink from 0 to 9. No blink mean 0.
- - There are some bug fix comes with this repo will be implemented in the Mesh SDK, they are in SDKpatch folder.
+ - There are some bug fixes come with this repo to be implemented in the Mesh SDK, they are in SDKpatch folder.
  
 
 
