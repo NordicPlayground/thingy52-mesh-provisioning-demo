@@ -1,6 +1,6 @@
 # Thingy Mesh Provisioning Demo v0.1
 ### Overview
-This is a quick guide for how to use the thingy52-mesh-provisioning-demo with the nRFMesh mobile app on iOS and Android.
+This is a quick guide on how to use the thingy52-mesh-provisioning-demo with the nRFMesh mobile app on iOS and Android.
 
 The demo can be used with as many Thingy as needed but it also works with just one Thingy. The Thingy firmware equiped with both Generic OnOff client and Generic OnOff Server.
 
