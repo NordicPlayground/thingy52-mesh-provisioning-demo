@@ -36,24 +36,26 @@ The proprietary simple OnOff model was replaced with a simplified version of SIG
 - Nordic nRF5x-DK or Segger J-Link debugger
 - 2x5 1.27mm SWD cable
 - Nordic Thingy:52 
-- Nordic Thingy:52 SDK v2.1.0
-    - [https://github.com/NordicSemiconductor/Nordic-Thingy52-FW/releases](https://github.com/NordicSemiconductor/Nordic-Thingy52-FW/releases"Github link")
+- Nordic Thingy:52 SDK v2.1.0 with mod to work with SDK v15 logger module. It's provided as a .zip in this repo
 - Nordic nRF5 SDK for Mesh v2.0.1
     - [https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF5-SDK-for-Mesh](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF5-SDK-for-Mesh "nRF-Mesh-SDK")
+- Nordic nRF5 SDK v15 
 - Segger Embedded Studio 
 
-### Running the demo
+### Building the demo
 To run the demo, you can use the precompiled firmware, or use Segger Embedded Studio to compile the firmware.
 
 To compile the demo firmware and run the demo, please follow the steps:
 1. Download and extract nRF5 Mesh SDK v2.0.1 
-2. Download and extract the Nordic Thingy:52 SDK and extract it inside in a folder inside "external" in Mesh SDK. Call it "ThingySDKv2.1" 
-3. Run the setup_sdk.bat.
-4. Download and place the folders in this repo into \examples\light_switch 
+2. Extract ThingySDKv2.1_mod.zip inside "external" in Mesh SDK. Should keep the "ThingySDKv2.1" folder name. 
+3. Download and extract nRF5 SDK v15 
+4. In SDK v15 \nRF5_SDK_15.0.0_a53641a\components\boards folder remove/rename file pca20020.h. It conflicts with the same file in Thingy SDK. 
+4. Download and place the thingy_provisioning_demo_generic_OnOff folders in this repo into \examples\light_switch 
 5. Connect the Thingy to the Debug port out on the DK or the Segger Jlink debugger. 
 6. Do an erase all to remove the Thingy original firmware and bootloader
 7. Open Segger Embedded Studio, and install the "nRF CPU Support Package". You can check it by click the main tool bar "Tools" -> "Package Manager", and search "nRF CPU Support Package".
-8. Compile one of the project provided in this repo and flash the firmware, the softdevice is flashed automatically. 
+8. Make sure you followed the SES.md guide in \doc\getting_started in nRFMESH SDK v2.0.1 of adding `SDK_ROOT` macro into SES, the same as when you started with Mesh examples. 
+9. Compile one of the project provided in this repo and flash the firmware, the softdevice is flashed automatically. 
 
 ### Known issues
  - There is a bug with iOS app so it won't work with BLINK authentication, that's why NUMMERIC version is provided. Since the Thingy doesn't have any display it will blink from 0 to 9. No blink mean 0.
