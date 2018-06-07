@@ -109,9 +109,9 @@ static bool m_led_flag= 0;
 static bool m_on_off_button_flag= 0;
 int LED_blink(void)
 {
-    APP_ERROR_CHECK(drv_ext_light_on(1));
+    (void)drv_ext_light_on(1);
     nrf_delay_ms(100);  
-    APP_ERROR_CHECK(drv_ext_light_off(1));
+    (void)drv_ext_light_off(1);
 }
 static void provisioning_complete_cb(void)
 {
@@ -149,14 +149,14 @@ static void provisioning_failed_cb(void)
 
 static void provisioning_start_cb(void)
 {
-   ERROR_CHECK(drv_ext_light_off(1));
+   (void)drv_ext_light_off(1);
    
 }
 
 static void provisioning_blink_output_cb(uint8_t * number)
 
 {   uint32_t err_code;
-     ERROR_CHECK(drv_ext_light_off(1));
+     (void)drv_ext_light_off(1);
      __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Blink OOB %u\n", number[15]);
      //The OOB data only use last byte to set the number of blink
      //Start the blinking timer
@@ -175,15 +175,15 @@ static bool on_off_server_set_cb(const generic_on_off_server_t * p_server, bool 
    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Got SET command to %u\n", value);
    if (value)
    {
-       err_code = drv_ext_light_on(1);
+       (void) drv_ext_light_on(1);
        m_led_flag=1;
     }
     else
     {
-       err_code = drv_ext_light_off(1);
+      (void) drv_ext_light_off(1);
        m_led_flag=0;
     }
-    APP_ERROR_CHECK(err_code);
+    
     return value;
 }
 
@@ -424,9 +424,9 @@ static void start(void)
             nrf_delay_ms(500);
             node_reset();
         }
-        ERROR_CHECK(drv_ext_light_on(1));
+        (void)drv_ext_light_on(1);
         nrf_delay_ms(100);
-        ERROR_CHECK(drv_ext_light_off(1));
+        (void)drv_ext_light_off(1);
  
     }
     const uint8_t *p_uuid = nrf_mesh_configure_device_uuid_get();
@@ -521,7 +521,8 @@ uint32_t m_my_ui_init( void)
     nrf_gpio_pin_clear(MOS_2);
     nrf_gpio_pin_clear(MOS_3);
     nrf_gpio_pin_clear(MOS_4);
-
+    
+ 
     return NRF_SUCCESS;
 }
 
@@ -560,10 +561,11 @@ static void board_init(void)
 static void blink_timeout_handler(void * p_context)
 {
     UNUSED_PARAMETER(p_context);
-    ERROR_CHECK(drv_ext_light_off(1));
-    ERROR_CHECK(drv_ext_light_on(1));
+    
+    (void)drv_ext_light_on(1);
+    
     nrf_delay_ms(100);  
-    ERROR_CHECK(drv_ext_light_off(1));
+    (void)drv_ext_light_off(1);
     number_of_blink--;
     if (number_of_blink<=0) 
     {
