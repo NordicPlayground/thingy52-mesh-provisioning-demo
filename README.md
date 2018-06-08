@@ -27,10 +27,10 @@ User can clear provisioning information of a node (reset the node) by holding th
 
 ### Some information about the firmware
 The firmware based on the proxy_server and proxy_client example in Mesh SDK v2.0.1. It uses some LED driver from Thingy SDK to control the LED.
-The proprietary simple OnOff model was replaced with a simplified version of SIG Generic OnOff model so that it would work with the mobile app. 
+The proprietary simple OnOff model was replaced with a simplified version of SIG Generic OnOff model so that it allows the mobile app to control the model from the app. 
 
 - Thingy_provisioning_demo_generic_OnOff_BLINK: uses NRF_MESH_PROV_OOB_OUTPUT_ACTION_BLINK for OOB authentication, the Thingy blinks from 1 to 5 times when provisioning 
-- Thingy_provisioning_demo_generic_OnOff_NUMMERIC: uses NRF_MESH_PROV_OOB_OUTPUT_ACTION_NUMMERIC for OOB authentication. The Thingy blinks 0 to 9 times when provisioning. This is added as a workaround until the iOS app is updated with a fix as it won't work with BLINK. 
+
 
 ### Requirements
 - Nordic nRF5x-DK or Segger J-Link debugger
@@ -58,7 +58,7 @@ To compile the demo firmware and run the demo, please follow the steps:
 9. Compile one of the project provided in this repo and flash the firmware, the softdevice is flashed automatically. 
 
 ### Known issues
- - There is a bug with iOS app so it won't work with BLINK authentication, that's why NUMMERIC version is provided. Since the Thingy doesn't have any display it will blink from 0 to 9. No blink mean 0.
+
  - There are some bug fixes come with this repo to be implemented in the Mesh SDK, they are in SDKpatch folder.
  
 
