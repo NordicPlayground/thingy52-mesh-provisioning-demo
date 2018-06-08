@@ -18,7 +18,7 @@
       arm_simulator_memory_simulation_parameter="RWX 00000000,00100000,FFFFFFFF;RWX 20000000,00010000,CDCDCDCD"
       arm_target_device_name="nrf52832_xxAA"
       arm_target_interface_type="SWD"
-      c_preprocessor_definitions="NO_VTOR_CONFIG;USE_APP_CONFIG=1;MESH_FEATURE_GATT=1;GATT_PROXY=1;NRF52_SERIES;NRF52832;NRF52832_XXAA;S132;SOFTDEVICE_PRESENT;NRF_SD_BLE_API_VERSION=6;BOARD_PCA10040;CONFIG_GPIO_AS_PINRESET;PERSISTENT_STORAGE=1"
+      c_preprocessor_definitions="NO_VTOR_CONFIG;USE_APP_CONFIG=1;MESH_FEATURE_GATT=1;GATT_PROXY=1;NRF52_SERIES;NRF52832;NRF52832_XXAA;S132;SOFTDEVICE_PRESENT;NRF_SD_BLE_API_VERSION=6;BOARD_PCA10040;CONFIG_GPIO_AS_PINRESET;PERSISTENT_STORAGE=1;MESH_GATT_PROXY_ADV_INT_MS = 500"
       c_user_include_directories="include;../../common/include;../../../external/rtt/include;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/drivers_nrf/delay;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/ble/common;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/softdevice/common;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/libraries/experimental_section_vars;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/libraries/experimental_memobj;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/libraries/strerror;model/generic_on_off/include;../../../models/config/include;../../../models/health/include;../../../mesh/gatt/api;../../../mesh/gatt/include;../../../mesh/stack/api;../../../mesh/core/api;../../../mesh/core/include;../../../mesh/access/api;../../../mesh/access/include;../../../mesh/dfu/api;../../../mesh/dfu/include;../../../mesh/prov/api;../../../mesh/prov/include;../../../mesh/bearer/api;../../../mesh/bearer/include;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/softdevice/s132/headers/;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/softdevice/s132/headers/nrf52/;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/modules/nrfx;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/modules/nrfx/mdk;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/modules/nrfx/hal;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/modules/nrfx/templates/nRF52832;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/toolchain/cmsis/include;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/toolchain/gcc;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/toolchain/cmsis/dsp/GCC;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/boards;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/integration/nrfx;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/libraries/log;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/libraries/util;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/libraries/delay;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/libraries/experimental_log;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/libraries/balloc;$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/libraries/experimental_log/src;../../../external/micro-ecc;../../../mesh/core/include;../../../external/ThingySDKv2.1/sdk_components/drivers_nrf/twi_master;../../../external/ThingySDKv2.1/source/util;../../../external/ThingySDKv2.1/sdk_components/drivers_nrf/pwm;../../../external/ThingySDKv2.1/source/drivers;../../../external/ThingySDKv2.1/include/util;../../../external/ThingySDKv2.1/include/drivers;../../../external/ThingySDKv2.1/sdk_components/libraries/util;../../../external/ThingySDKv2.1/sdk_components/drivers_nrf/hal;../../../external/ThingySDKv2.1/sdk_components/drivers_nrf/delay;../../../external/ThingySDKv2.1/sdk_components/drivers_nrf/common;../../../external/ThingySDKv2.1/sdk_components/libraries/log;../../../external/ThingySDKv2.1/sdk_components/libraries/timer;../../../external/ThingySDKv2.1/include/board;../../../external/ThingySDKv2.1/sdk_components/libraries/strerror;../../../external/ThingySDKv2.1/sdk_components/libraries/log/src;../../../external/ThingySDKv2.1/include/macros;../../../external/ThingySDKv2.1/include/modules"
       debug_additional_load_file="$(SDK_ROOT:../../../../nRF5_SDK_15.0.0_a53641a)/components/softdevice/s132/hex/s132_nrf52_6.0.0_softdevice.hex"
       debug_start_from_entry_point_symbol="No"
@@ -36,13 +36,15 @@
       <file file_name="src/main.c" />
       <file file_name="../../common/src/rtt_input.c" />
       <file file_name="../../common/src/mesh_app_utils.c" />
-      <file file_name="../../common/src/mesh_adv.c" />
       <file file_name="../../nrf_mesh_weak.c" />
       <file file_name="../../common/src/app_error_weak.c" />
       <file file_name="../../common/src/assertion_handler_weak.c" />
       <file file_name="src/mesh_provisionee.c" />
       <file file_name="SDKPatch/advertiser.c" />
       <file file_name="SDKPatch/nrf_mesh_prov_bearer_gatt.c" />
+      <file file_name="SDKPatch/mesh_adv.c" />
+      <file file_name="SDKPatch/proxy.c" />
+      <file file_name="SDKPatch/network.c" />
     </folder>
     <folder Name="Core">
       <file file_name="../../../mesh/core/src/internal_event.c" />
@@ -71,7 +73,6 @@
       <file file_name="../../../mesh/core/src/timeslot.c" />
       <file file_name="../../../mesh/core/src/bearer_event.c" />
       <file file_name="../../../mesh/core/src/enc.c" />
-      <file file_name="../../../mesh/core/src/network.c" />
       <file file_name="../../../mesh/core/src/net_packet.c" />
       <file file_name="../../../mesh/core/src/msqueue.c" />
       <file file_name="../../../mesh/core/src/nrf_mesh_keygen.c" />
@@ -96,7 +97,6 @@
     </folder>
     <folder Name="GATT">
       <file file_name="../../../mesh/gatt/src/mesh_gatt.c" />
-      <file file_name="../../../mesh/gatt/src/proxy.c" />
       <file file_name="../../../mesh/gatt/src/proxy_filter.c" />
     </folder>
     <folder Name="Toolchain">

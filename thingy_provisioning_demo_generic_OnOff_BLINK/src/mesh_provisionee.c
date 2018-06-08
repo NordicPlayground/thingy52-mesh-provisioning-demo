@@ -198,7 +198,7 @@ uint32_t mesh_provisionee_prov_start(const mesh_provisionee_start_params_t * p_s
         ACCESS_ELEMENT_COUNT,
         NRF_MESH_PROV_ALGORITHM_FIPS_P256EC,
         0,
-        0,
+        0,//NRF_MESH_PROV_OOB_STATIC_TYPE_SUPPORTED,
         5,
         NRF_MESH_PROV_OOB_OUTPUT_ACTION_BLINK,
         0,
