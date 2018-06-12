@@ -45,6 +45,7 @@
       <file file_name="SDKPatch/mesh_adv.c" />
       <file file_name="SDKPatch/proxy.c" />
       <file file_name="SDKPatch/network.c" />
+      <file file_name="SDKPatch/sx150x_led_drv_calc.c" />
     </folder>
     <folder Name="Core">
       <file file_name="../../../mesh/core/src/internal_event.c" />
@@ -168,7 +169,6 @@
     <folder Name="Thingy">
       <file file_name="../../../external/ThingySDKv2.1/source/drivers/drv_ext_light.c" />
       <file file_name="../../../external/ThingySDKv2.1/source/drivers/drv_sx1509.c" />
-      <file file_name="../../../external/ThingySDKv2.1/source/util/sx150x_led_drv_calc.c" />
       <file file_name="../../../external/ThingySDKv2.1/source/util/twi_manager.c" />
       <file file_name="../../../external/ThingySDKv2.1/sdk_components/libraries/timer/app_timer.c" />
       <file file_name="../../../external/ThingySDKv2.1/sdk_components/libraries/strerror/nrf_strerror.c" />

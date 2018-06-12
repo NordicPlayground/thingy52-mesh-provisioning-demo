@@ -72,7 +72,7 @@
  </Watch4>
  <Files>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="202" useTextEdit="1" useBinaryEdit="0" left="0" path="src/mesh_provisionee.c" debugPath="src/mesh_provisionee.c" selected="0" top="180" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="156" useTextEdit="1" useBinaryEdit="0" left="0" path="src/main.c" debugPath="src/main.c" selected="0" top="131" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="25" y="445" useTextEdit="1" useBinaryEdit="0" left="0" path="src/main.c" debugPath="src/main.c" selected="1" top="426" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="79" useTextEdit="1" useBinaryEdit="0" left="0" path="include/my_mesh_provisionee.h" debugPath="include/my_mesh_provisionee.h" selected="0" top="72" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="195" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/prov/api/nrf_mesh_prov_types.h" debugPath="../../../mesh/prov/api/nrf_mesh_prov_types.h" selected="0" top="157" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="87" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../external/ThingySDKv2.1/source/drivers/drv_ext_light.c" debugPath="../../../external/ThingySDKv2.1/source/drivers/drv_ext_light.c" selected="0" top="52" codecName="Default"/>
@@ -86,7 +86,8 @@
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="80" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/gatt/src/mesh_gatt.c" debugPath="../../../mesh/gatt/src/mesh_gatt.c" selected="0" top="60" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="388" useTextEdit="1" useBinaryEdit="0" left="0" path="SDKPatch/network.c" debugPath="SDKPatch/network.c" selected="0" top="377" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="151" useTextEdit="1" useBinaryEdit="0" left="0" path="SDKPatch/mesh_adv.c" debugPath="SDKPatch/mesh_adv.c" selected="0" top="142" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="711" useTextEdit="1" useBinaryEdit="0" left="0" path="SDKPatch/proxy.c" debugPath="SDKPatch/proxy.c" selected="1" top="698" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="711" useTextEdit="1" useBinaryEdit="0" left="0" path="SDKPatch/proxy.c" debugPath="SDKPatch/proxy.c" selected="0" top="698" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="49" y="1" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../external/ThingySDKv2.1/source/drivers/drv_sx1509.c" debugPath="../../../external/ThingySDKv2.1/source/drivers/drv_sx1509.c" selected="0" top="0" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/NordicSDK/MESH_v2.0.1/examples/Thingy_mesh_provisioning/thingy_provisioning_demo_generic_OnOff_NUMMERIC/SDKPatch" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="light_switch_proxy_server_nrf52832_xxAA_s132_6.0.0" fileDialogDefaultFilter="" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/NordicSDK/MESH_v2.0.1/examples/Thingy_mesh_provisioning/thingy_provisioning_demo_generic_OnOff_BLINK/SDKPatch" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
