@@ -2,6 +2,8 @@
 ### Overview
 This is a quick guide on how to use the thingy52-mesh-provisioning-demo with the nRFMesh mobile app on iOS and Android.
 
+There is a video demonstration of the demo here: https://www.youtube.com/watch?v=XthbU9NP0Yg
+
 The demo can be used with as many Thingy as needed but it also works with just one Thingy. The Thingy firmware equiped with both Generic OnOff client and Generic OnOff Server.
 
 The user can use nRF Mesh app to do provisioning for each Thingy. There is authentication required, please enter the number of LED blink you see on the Thingy when asked on the app. If you don't see any blink but it stops breathing Red type 0.
