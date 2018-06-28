@@ -175,7 +175,7 @@ static bool on_off_server_set_cb(const generic_on_off_server_t * p_server, bool 
    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Got SET command to %u\n", value);
    if (value)
    {
-       ERROR_CHECK(drv_ext_light_off(1));
+       ERROR_CHECK(drv_ext_light_on(1));
        m_led_flag=1;
     }
     else
