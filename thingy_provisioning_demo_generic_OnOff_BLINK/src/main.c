@@ -180,7 +180,7 @@ static bool on_off_server_set_cb(const generic_on_off_server_t * p_server, bool 
     }
     else
     {
-      (void) drv_ext_light_off(1);
+       ERROR_CHECK(drv_ext_light_off(1));
        m_led_flag=0;
     }
     
