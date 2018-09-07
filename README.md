@@ -1,4 +1,4 @@
-# Thingy Mesh Provisioning Demo v0.1
+# Thingy Mesh Provisioning Demo v0.5
 ### Overview
 This is a quick guide on how to use the thingy52-mesh-provisioning-demo with the nRFMesh mobile app on iOS and Android.
 
@@ -39,29 +39,29 @@ The proprietary simple OnOff model was replaced with a simplified version of SIG
 - 2x5 1.27mm SWD cable
 - Nordic Thingy:52 
 - Nordic Thingy:52 SDK v2.1.0 with mod to work with SDK v15 logger module. It's provided as a .zip in this repo
-- Nordic nRF5 SDK for Mesh v2.0.1
+- Nordic nRF5 SDK for Mesh v2.2.0
     - [https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF5-SDK-for-Mesh](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF5-SDK-for-Mesh "nRF-Mesh-SDK")
-- Nordic nRF5 SDK v15 
+- Nordic nRF5 SDK v15.0.0
 - Segger Embedded Studio 
 
 ### Building the demo
 To run the demo, you can use the precompiled firmware, or use Segger Embedded Studio to compile the firmware.
 
 To compile the demo firmware and run the demo, please follow the steps:
-1. Download and extract nRF5 Mesh SDK v2.0.1 
+1. Download and extract nRF5 Mesh SDK v2.2.0
 2. Extract ThingySDKv2.1_mod.zip inside "external" in Mesh SDK. Should keep the "ThingySDKv2.1" folder name. 
-3. Download and extract nRF5 SDK v15 
+3. Download and extract nRF5 SDK v15.0.0 
 4. In SDK v15 \nRF5_SDK_15.0.0_a53641a\components\boards folder remove/rename file pca20020.h. It conflicts with the same file in Thingy SDK. 
 4. Download and place the thingy_provisioning_demo_generic_OnOff folders in this repo into \examples\light_switch 
 5. Connect the Thingy to the Debug port out on the DK or the Segger Jlink debugger. 
 6. Do an erase all to remove the Thingy original firmware and bootloader
 7. Open Segger Embedded Studio, and install the "nRF CPU Support Package". You can check it by click the main tool bar "Tools" -> "Package Manager", and search "nRF CPU Support Package".
-8. Make sure you followed the SES.md guide in \doc\getting_started in nRFMESH SDK v2.0.1 of adding `SDK_ROOT` macro into SES, the same as when you started with Mesh examples. 
+8. Make sure you followed the SES.md guide in \doc\getting_started in nRF MESH SDK v2.2.0 of adding `SDK_ROOT` macro into SES, the same as when you started with Mesh examples. 
 9. Compile one of the project provided in this repo and flash the firmware, the softdevice is flashed automatically. 
 
 ### Known issues
 
- - There are some bug fixes come with this repo to be implemented in the Mesh SDK, they are in SDKpatch folder.
+ - Generic OnOff model in this demo was not merged with the Generic OnOff model in SDK v2.2.0
  
 
 
