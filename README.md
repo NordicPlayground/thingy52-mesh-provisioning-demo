@@ -28,7 +28,7 @@ User can clear provisioning information of a node (reset the node) by holding th
 - Turn on or off solid White: Thingy in normal operation, light is turn off or on. 
 
 ### Some information about the firmware
-The firmware based on the proxy_server and proxy_client example in Mesh SDK v2.0.1. It uses some LED driver from Thingy SDK to control the LED.
+The firmware based on the proxy_server and proxy_client example in Mesh SDK v2.x. It uses some LED driver from Thingy SDK to control the LED.
 The proprietary simple OnOff model was replaced with a simplified version of SIG Generic OnOff model so that it allows the mobile app to control the model from the app. 
 
 - Thingy_provisioning_demo_generic_OnOff_BLINK: uses NRF_MESH_PROV_OOB_OUTPUT_ACTION_BLINK for OOB authentication, the Thingy blinks from 1 to 5 times when provisioning 
