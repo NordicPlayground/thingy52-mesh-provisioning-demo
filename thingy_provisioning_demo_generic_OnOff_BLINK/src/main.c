@@ -419,7 +419,6 @@ static void start(void)
         if (nrf_gpio_pin_read(THINGY_BUTTON)==0)
         {
       
-            proxy_disable();
             mesh_stack_config_clear();
             nrf_delay_ms(500);
             node_reset();
