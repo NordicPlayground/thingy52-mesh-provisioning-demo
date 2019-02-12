@@ -32,7 +32,6 @@
   <ProjectSessionItem path="thingy52-mesh-provisioning-demo;thingy52-mesh-provisioning-demo;Access"/>
   <ProjectSessionItem path="thingy52-mesh-provisioning-demo;thingy52-mesh-provisioning-demo;Application"/>
   <ProjectSessionItem path="thingy52-mesh-provisioning-demo;thingy52-mesh-provisioning-demo;Bearer"/>
-  <ProjectSessionItem path="thingy52-mesh-provisioning-demo;thingy52-mesh-provisioning-demo;Configuration Model"/>
   <ProjectSessionItem path="thingy52-mesh-provisioning-demo;thingy52-mesh-provisioning-demo;Core"/>
   <ProjectSessionItem path="thingy52-mesh-provisioning-demo;thingy52-mesh-provisioning-demo;GATT"/>
   <ProjectSessionItem path="thingy52-mesh-provisioning-demo;thingy52-mesh-provisioning-demo;Generic OnOff Model"/>
@@ -80,18 +79,34 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="57" y="300" useTextEdit="1" useBinaryEdit="0" left="0" path="src/main.c" debugPath="src/main.c" selected="0" top="264" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="118" useTextEdit="1" useBinaryEdit="0" left="0" path="model/generic_on_off/src/generic_on_off_client.c" debugPath="model/generic_on_off/src/generic_on_off_client.c" selected="0" top="102" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="142" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/access/api/access_reliable.h" debugPath="../../../mesh/access/api/access_reliable.h" selected="0" top="127" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="161" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/access/api/access.h" debugPath="../../../mesh/access/api/access.h" selected="0" top="136" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1447" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/access/src/device_state_manager.c" debugPath="../../../mesh/access/src/device_state_manager.c" selected="0" top="2437" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="10" y="45" useTextEdit="1" useBinaryEdit="0" left="0" path="../../common/include/mesh_app_utils.h" debugPath="../../common/include/mesh_app_utils.h" selected="0" top="24" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="102" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/access/api/device_state_manager.h" debugPath="../../../mesh/access/api/device_state_manager.h" selected="0" top="81" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="107" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/stack/src/mesh_stack.c" debugPath="../../../mesh/stack/src/mesh_stack.c" selected="0" top="67" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="819" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../SDKv15.2/components/softdevice/s132/headers/nrf_soc.h" debugPath="../../../../SDKv15.2/components/softdevice/s132/headers/nrf_soc.h" selected="0" top="778" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="39" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/core/include/aes.h" debugPath="../../../mesh/core/include/aes.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="44" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/core/src/hal.c" debugPath="../../../mesh/core/src/hal.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="42" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/core/src/timeslot.c" debugPath="../../../mesh/core/src/timeslot.c" selected="1" top="18" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="202" useTextEdit="1" useBinaryEdit="0" left="0" path="src/mesh_provisionee.c" debugPath="src/mesh_provisionee.c" selected="0" top="180" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="598" useTextEdit="1" useBinaryEdit="0" left="0" path="src/main.c" debugPath="src/main.c" selected="0" top="574" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="79" useTextEdit="1" useBinaryEdit="0" left="0" path="include/my_mesh_provisionee.h" debugPath="include/my_mesh_provisionee.h" selected="0" top="72" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="195" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/prov/api/nrf_mesh_prov_types.h" debugPath="../../../mesh/prov/api/nrf_mesh_prov_types.h" selected="0" top="157" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="87" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../external/ThingySDKv2.1/source/drivers/drv_ext_light.c" debugPath="../../../external/ThingySDKv2.1/source/drivers/drv_ext_light.c" selected="0" top="52" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="96" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/prov/src/prov_utils.c" debugPath="../../../mesh/prov/src/prov_utils.c" selected="0" top="67" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="90" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/core/src/rand.c" debugPath="../../../mesh/core/src/rand.c" selected="0" top="68" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="223" useTextEdit="1" useBinaryEdit="0" left="0" path="model/generic_on_off/src/generic_on_off_client.c" debugPath="model/generic_on_off/src/generic_on_off_client.c" selected="0" top="209" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="63" useTextEdit="1" useBinaryEdit="0" left="0" path="model/generic_on_off/src/generic_on_off_server.c" debugPath="model/generic_on_off/src/generic_on_off_server.c" selected="0" top="60" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="34" useTextEdit="1" useBinaryEdit="0" left="0" path="include/light_switch_example_common.h" debugPath="include/light_switch_example_common.h" selected="0" top="17" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="447" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/core/api/nrf_mesh_config_core.h" debugPath="../../../mesh/core/api/nrf_mesh_config_core.h" selected="0" top="421" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/gatt/include/proxy.h" debugPath="../../../mesh/gatt/include/proxy.h" selected="0" top="129" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="80" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/gatt/src/mesh_gatt.c" debugPath="../../../mesh/gatt/src/mesh_gatt.c" selected="0" top="60" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="148" useTextEdit="1" useBinaryEdit="0" left="3" path="SDKPatch/network.c" debugPath="SDKPatch/network.c" selected="0" top="133" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="151" useTextEdit="1" useBinaryEdit="0" left="0" path="SDKPatch/mesh_adv.c" debugPath="SDKPatch/mesh_adv.c" selected="0" top="142" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../external/ThingySDKv2.1/source/drivers/drv_sx1509.c" debugPath="../../../external/ThingySDKv2.1/source/drivers/drv_sx1509.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="3" y="45" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/stack/api/mesh_stack.h" debugPath="../../../mesh/stack/api/mesh_stack.h" selected="0" top="9" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/gatt/api/mesh_adv.h" debugPath="../../../mesh/gatt/api/mesh_adv.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="17" y="383" useTextEdit="1" useBinaryEdit="0" left="0" path="SDKPatch/advertiser.c" debugPath="SDKPatch/advertiser.c" selected="0" top="370" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="15" y="333" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/core/src/nrf_mesh.c" debugPath="../../../mesh/core/src/nrf_mesh.c" selected="0" top="297" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="354" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/access/src/access.c" debugPath="../../../mesh/access/src/access.c" selected="0" top="320" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="85" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/bearer/src/broadcast.c" debugPath="../../../mesh/bearer/src/broadcast.c" selected="0" top="65" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="722" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/gatt/src/proxy.c" debugPath="../../../mesh/gatt/src/proxy.c" selected="0" top="675" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="44" y="290" useTextEdit="1" useBinaryEdit="0" left="0" path="SDKPatch/nrf_mesh_prov_bearer_gatt.c" debugPath="SDKPatch/nrf_mesh_prov_bearer_gatt.c" selected="0" top="264" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="71" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/stack/src/mesh_stack.c" debugPath="../../../mesh/stack/src/mesh_stack.c" selected="0" top="38" codecName=""/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="47" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../mesh/core/src/mesh_config.c" debugPath="../../../mesh/core/src/mesh_config.c" selected="0" top="24" codecName=""/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="25" y="34" useTextEdit="1" useBinaryEdit="0" left="0" path="../../common/src/mesh_app_utils.c" debugPath="../../common/src/mesh_app_utils.c" selected="0" top="18" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="2" y="14" useTextEdit="1" useBinaryEdit="0" left="0" path="../../common/src/mesh_adv.c" debugPath="../../common/src/mesh_adv.c" selected="1" top="0" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="thingy52-mesh-provisioning-demo" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/NordicSDK/MESH_v2.2.0/examples/common/src" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="thingy52-mesh-provisioning-demo" fileDialogDefaultFilter="" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/NordicSDK/MESH_v2.2.0/examples/common/src" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

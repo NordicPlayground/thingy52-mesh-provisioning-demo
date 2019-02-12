@@ -1,4 +1,4 @@
-# Thingy Mesh Provisioning Demo v0.51
+# Thingy Mesh Provisioning Demo v0.5
 ### Overview
 This is a quick guide on how to use the thingy52-mesh-provisioning-demo with the nRFMesh mobile app on iOS and Android.
 
