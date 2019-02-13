@@ -33,10 +33,10 @@ The proprietary simple OnOff model was replaced with a simplified version of SIG
 
 - Thingy_provisioning_demo_generic_OnOff_BLINK: uses NRF_MESH_PROV_OOB_OUTPUT_ACTION_BLINK for OOB authentication, the Thingy blinks from 1 to 5 times when provisioning 
 
-###ENOCEAN Feature
+### ENOCEAN Feature
 This Enocean branch added support for energy harvesting ENOCEAN switch (PTM215B). This combine the Enocean example we have in the SDK to the Thingy Mesh Provisioning firmware. It basically acts as a translator to send a mesh packet when receiving an advertising packet sent from the Enocean switch. In this case when pressing the switch on the Enocean it act the same as when the button on the thingy pressed. A small difference is that there is two button on the Enocean switch, one for ON and one for OFF compare to toggle ON/OFF as of the thingy button. Each thingy can handle 2 Enocean switch, and there is no limit on how many Thingy can pair to an Enocean (must be in one Enocean provision/pair). But it's suggested not to have too many thingys to be translators to avoid unneccesary traffic.
 
-###Provision the ENOCEAN switch
+### Provision the ENOCEAN switch
 The switch needs to be provision/pair (not mesh provision) before the advertising packets can be decrypted. To pair, follow the same instruction as in the Enocean example in nRFMesh SDK.       
 - Press and hold the selected button for more than 7 seconds before releasing it.
 - Press the selected button quickly (hold for less than 2 seconds).
