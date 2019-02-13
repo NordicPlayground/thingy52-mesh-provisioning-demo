@@ -15,7 +15,7 @@
 *.lst
 *.lnp
 *.bak
-
+*.emSession
 *.ini
 *.iex
 *.sct

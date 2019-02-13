@@ -39,6 +39,8 @@
       <file file_name="src/mesh_provisionee.c" />
       <file file_name="SDKPatch/sx150x_led_drv_calc.c" />
       <file file_name="../../common/src/mesh_adv.c" />
+      <file file_name="src/enocean.c" />
+      <file file_name="src/flash_helper.c" />
     </folder>
     <folder Name="Core">
       <file file_name="../../../mesh/core/src/internal_event.c" />
