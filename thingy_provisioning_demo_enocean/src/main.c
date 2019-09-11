@@ -53,6 +53,7 @@
 #include "access_config.h"
 #include "proxy.h"
 #include "m_ui.h"
+
 /* Provisioning and configuration */
 #include "my_mesh_provisionee.h"
 #include "mesh_app_utils.h"
@@ -76,6 +77,14 @@
 #include "drv_ext_light.h"
 #include "drv_ext_gpio.h"
 #include "nrf_delay.h"
+#include "enocean.h"
+#include "flash_helper.h"
+#include "enocean_switch_example.h"
+#include "nrf_mesh_events.h"
+/* Configure switch debounce timeout for EnOcean switch here */
+#define SWITCH_DEBOUNCE_INTERVAL_US (MS_TO_US(500))
+/* Two EnOcean switches can be used in parallel */
+#define MAX_ENOCEAN_DEVICES_SUPPORTED (2)
 #define ONOFF_SERVER_0_LED          (BSP_LED_0)
 #define APP_ONOFF_ELEMENT_INDEX     (0)
 #define THINGY_BUTTON 11
@@ -91,6 +100,10 @@ static const nrf_drv_twi_t     m_twi_sensors = NRF_DRV_TWI_INSTANCE(TWI_SENSOR_I
 static bool m_device_provisioned;
 uint32_t hal_buttons_init(void);
 static bool m_on_off_button_flag= 0;
+static void app_mesh_core_event_cb (const nrf_mesh_evt_t * p_evt);
+static void app_enocean_start(void);
+
+static nrf_mesh_evt_handler_t m_mesh_core_event_handler = { .evt_cb = app_mesh_core_event_cb };
 /*************************************************************************************************/
 static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool onoff);
 static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * p_present_onoff);
@@ -116,6 +129,182 @@ const generic_onoff_client_callbacks_t client_cbs =
     .ack_transaction_status_cb = app_gen_onoff_client_transaction_status_cb,
     .periodic_publish_cb = app_gen_onoff_client_publish_interval_cb
 };
+
+typedef struct
+{
+    uint32_t a0_ts;
+    uint32_t a1_ts;
+    uint32_t b0_ts;
+    uint32_t b1_ts;
+} app_switch_debounce_state_t;
+static app_secmat_flash_t m_app_secmat_flash[MAX_ENOCEAN_DEVICES_SUPPORTED];
+static enocean_commissioning_secmat_t m_app_secmat[MAX_ENOCEAN_DEVICES_SUPPORTED];
+static uint8_t  m_enocean_dev_cnt;
+static app_switch_debounce_state_t m_switch_state[MAX_ENOCEAN_DEVICES_SUPPORTED];
+/* Try to store app data. If busy, ask user to manually initiate operation. */
+static void app_data_store_try(void)
+{
+    uint32_t status = app_flash_data_store(APP_DATA_ENTRY_HANDLE, &m_app_secmat_flash[0], sizeof(m_app_secmat_flash));
+    if (status == NRF_SUCCESS)
+    {
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Storing: Enocean security material\n");
+    }
+    else if (status == NRF_ERROR_NOT_SUPPORTED)
+    {
+       __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Cannot store: Persistent storage not enabled\n");
+    }
+    else
+    {
+        __LOG(LOG_SRC_APP, LOG_LEVEL_ERROR, "Flash busy. Cannot store. Press Button 2 to try again. \n");
+    }
+}
+
+static uint8_t enocean_device_index_get(enocean_evt_t * p_evt)
+{
+    uint8_t i;
+    for (i = 0; i < m_enocean_dev_cnt; i++)
+    {
+        if (memcmp(p_evt->p_ble_gap_addr, m_app_secmat[i].p_ble_gap_addr, BLE_GAP_ADDR_LEN) == 0)
+        {
+            break;
+        }
+    }
+
+    /* This should never assert. */
+    if (i == m_enocean_dev_cnt)
+    {
+        APP_ERROR_CHECK(false);
+    }
+
+    return i;
+}
+
+/* Forward the ADV packets to the Enocean module */
+static void rx_callback(const nrf_mesh_adv_packet_rx_data_t * p_rx_data)
+{
+    enocean_packet_process(p_rx_data);
+}
+
+/* This example translates the messages from the PTM215B switches to on/off client model messages.
+The mapping of the switches and corresponding client model messages is as follows:
+
+Pressing Switch 1 will turn ON LED 1 on the servers with ODD addresses.
+Pressing Switch 2 will turn OFF LED 1 on the servers with ODD addresses.
+Pressing Switch 3 will turn ON LED 1 on the servers with EVEN addresses.
+Pressing Switch 4 will turn OFF LED 1 on the servers with EVEN addresses.
+*/
+static void app_enocean_cb(enocean_evt_t * p_evt)
+{
+    if  (p_evt->type == ENOCEAN_EVT_DATA_RECEIVED)
+    {
+        uint32_t status = NRF_SUCCESS;
+        __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Sw data A0: %d A1: %d B0: %d B1: %d Action: %d\n",
+              p_evt->params.data.status.a0,p_evt->params.data.status.a1,p_evt->params.data.status.b0,
+              p_evt->params.data.status.b1,p_evt->params.data.status.action);
+        //Simplified
+
+        generic_onoff_set_params_t set_params;
+        model_transition_t transition_params;
+        static uint8_t tid = 0;
+        set_params.tid = tid++;
+        transition_params.delay_ms = 50;
+        transition_params.transition_time_ms = 100;
+        if (p_evt->params.data.status.action==1)
+              {
+                  //There are 4 buttons on the Enocean switch, when release all of them are 0.        
+                  if ((p_evt->params.data.status.a1,p_evt->params.data.status.b0==1)||(p_evt->params.data.status.a1,p_evt->params.data.status.b1==1))
+                  {
+                      set_params.on_off=p_evt->params.data.status.b0;
+                      status = generic_onoff_client_set_unack(&m_client,&set_params,
+                                                    &transition_params,APP_UNACK_MSG_REPEAT_COUNT);
+                  }
+                  else
+                  {
+                      set_params.on_off=p_evt->params.data.status.a0;
+                      status = generic_onoff_client_set_unack(&m_client,&set_params,
+                                                    &transition_params, APP_UNACK_MSG_REPEAT_COUNT);
+                  }
+
+              }
+    }
+    else if (p_evt->type == ENOCEAN_EVT_SECURITY_MATERIAL_RECEIVED)
+    {
+        if (m_enocean_dev_cnt < MAX_ENOCEAN_DEVICES_SUPPORTED)
+        {
+            m_app_secmat_flash[m_enocean_dev_cnt].seq = p_evt->params.secmat.seq;
+            memcpy(&m_app_secmat_flash[m_enocean_dev_cnt].ble_gap_addr[0],
+                   p_evt->p_ble_gap_addr, BLE_GAP_ADDR_LEN);
+            memcpy(&m_app_secmat_flash[m_enocean_dev_cnt].key[0],
+                   p_evt->params.secmat.p_key, PTM215B_COMM_PACKET_KEY_SIZE);
+
+            app_data_store_try();
+
+            m_app_secmat[m_enocean_dev_cnt].p_seq =  &m_app_secmat_flash[m_enocean_dev_cnt].seq;
+            m_app_secmat[m_enocean_dev_cnt].p_ble_gap_addr = &m_app_secmat_flash[m_enocean_dev_cnt].ble_gap_addr[0];
+            m_app_secmat[m_enocean_dev_cnt].p_key = &m_app_secmat_flash[m_enocean_dev_cnt].key[0];
+            enocean_secmat_add(&m_app_secmat[m_enocean_dev_cnt]);
+
+            m_enocean_dev_cnt++;
+
+            hal_led_blink_ms( LED_BLINK_INTERVAL_MS, LED_BLINK_CNT_PROV);
+        }
+        else
+        {
+            __LOG(LOG_SRC_APP, LOG_LEVEL_ERROR, "Cannot add new device. Max number of supported devices: %d\n", MAX_ENOCEAN_DEVICES_SUPPORTED);
+        }
+    }
+}
+
+static void app_enocean_start(void)
+{
+    __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Starting application \n");
+
+    /* Load app specific data */
+    if (app_flash_data_load(APP_DATA_ENTRY_HANDLE, &m_app_secmat_flash[0], sizeof(m_app_secmat_flash)) == NRF_SUCCESS)
+    {
+        for (uint8_t i = 0; i < MAX_ENOCEAN_DEVICES_SUPPORTED; i++)
+        {
+            m_app_secmat[i].p_ble_gap_addr = &m_app_secmat_flash[i].ble_gap_addr[0];
+            m_app_secmat[i].p_key = &m_app_secmat_flash[i].key[0];
+            m_app_secmat[i].p_seq = &m_app_secmat_flash[i].seq;
+            m_enocean_dev_cnt++;
+            enocean_secmat_add(&m_app_secmat[i]);
+            __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Restored: Enocean security materials\n");
+        }
+    }
+    else
+    {
+        m_enocean_dev_cnt = 0;
+    }
+
+    /* Install rx callback to intercept incoming ADV packets so that they can be passed to the
+    EnOcean packet processor */
+    nrf_mesh_rx_cb_set(rx_callback);
+}
+static void app_mesh_core_event_cb(const nrf_mesh_evt_t * p_evt)
+{
+    /* USER_NOTE: User can insert mesh core event proceesing here */
+    switch (p_evt->type)
+    {
+        /* Start user application specific functions only when flash is stable */
+        case NRF_MESH_EVT_FLASH_STABLE:
+            __LOG(LOG_SRC_APP, LOG_LEVEL_DBG1, "Mesh evt: FLASH_STABLE \n");
+            {
+                static bool s_app_started;
+                if (!s_app_started)
+                {
+                    /* Flash operation initiated during initialization has been completed */
+                    app_enocean_start();
+                    s_app_started = true;
+                }
+            }
+            break;
+
+        default:
+            break;
+    }
+}
+
 /* Callback for updating the hardware state */
 static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool onoff)
 {
@@ -418,6 +607,9 @@ static void mesh_init(void)
         .models.config_server_cb = config_server_evt_cb
     };
     ERROR_CHECK(mesh_stack_init(&init_params, &m_device_provisioned));
+    /* Register event handler to receive NRF_MESH_EVT_FLASH_STABLE. Application functionality will
+    be started after this event */
+    nrf_mesh_evt_handler_add(&m_mesh_core_event_handler);
 }
 
 static void initialize(void)
@@ -435,6 +627,8 @@ static void initialize(void)
     board_init();
     mesh_init();
     m_my_ui_init();
+    app_flash_init();
+    enocean_translator_init(app_enocean_cb);
 
     
 }
@@ -473,8 +667,6 @@ static void start(void)
             nrf_delay_ms(500);
             node_reset();
         }
-       
-        
       hal_led_blink_ms(100,2);
     }
    

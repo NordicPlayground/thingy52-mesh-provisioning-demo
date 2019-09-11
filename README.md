@@ -1,4 +1,4 @@
-# Thingy Mesh Provisioning Demo v0.6
+# Thingy Mesh Provisioning Demo v0.6 ENOCEAN
 ### Overview
 This is a quick guide on how to use the thingy52-mesh-provisioning-demo with the nRFMesh mobile app on iOS and Android.
 
@@ -35,6 +35,16 @@ Authentication:
 - Output OOB: uses NRF_MESH_PROV_OOB_OUTPUT_ACTION_BLINK for OOB authentication, the Thingy blinks from 1 to 5 times when provisioning 
 
 - Static OOB: uses NRF_MESH_PROV_OOB_STATIC_TYPE_SUPPORTED for OOB authentication, the data is hardcoded on Thingy firmware, which is 0x888888888888888888888888 (32 digit 8) it can be modified in light_switch_example_common.h
+
+### ENOCEAN Feature
+This Enocean branch added support for energy harvesting ENOCEAN switch (PTM215B). This combine the Enocean example we have in the SDK to the Thingy Mesh Provisioning firmware. It basically acts as a translator to send a mesh packet when receiving an advertising packet sent from the Enocean switch. In this case when pressing the switch on the Enocean it act the same as when the button on the thingy pressed. A small difference is that there is two button on the Enocean switch, one for ON and one for OFF compare to toggle ON/OFF as of the thingy button. Each thingy can handle 2 Enocean switch, and there is no limit on how many Thingy can pair to an Enocean (must be in one Enocean provision/pair). But it's suggested not to have too many thingys to be translators to avoid unneccesary traffic.
+
+### Provision the ENOCEAN switch
+The switch needs to be provision/pair (not mesh provision) before the advertising packets can be decrypted. To pair, follow the same instruction as in the Enocean example in nRFMesh SDK.       
+- Press and hold the selected button for more than 7 seconds before releasing it.
+- Press the selected button quickly (hold for less than 2 seconds).
+- Press and hold the selected button again for more than 7 seconds before releasing it.
+After pairing success, the LED on the Thingy will lid for 500ms. 
 
 ### Requirements
 - Nordic nRF5x-DK or Segger J-Link debugger
