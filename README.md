@@ -60,7 +60,7 @@ After pairing success, the LED on the Thingy will lid for 500ms.
 To run the demo, you can use the precompiled firmware, or use Segger Embedded Studio to compile the firmware.
 
 To compile the demo firmware and run the demo, please follow the steps:
-1. Download and extract nRF5 Mesh SDK v2.2.0
+1. Download and extract nRF5 Mesh SDK v3.2.0
 2. Extract ThingySDKv2.1_mod.zip inside "external" in Mesh SDK. Should keep the "ThingySDKv2.1" folder name. 
 3. Download and extract nRF5 SDK v15.3 
 4. In SDK v15.3: \components\boards folder remove/rename file pca20020.h. It conflicts with the same file in Thingy SDK. 
