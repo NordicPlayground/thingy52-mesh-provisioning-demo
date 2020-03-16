@@ -120,5 +120,10 @@ void hal_led_blink_stop(void);
 
 /** @} end of SIMPLE_HAL */
 
+/*Start charging indication*/
+
+void charging_indicate_start(void);
+void charging_indicate_stop(void);
+void led_breath_yellow(void);
 void led_breath_red(void);
 #endif /* SIMPLE_HAL_H__ */

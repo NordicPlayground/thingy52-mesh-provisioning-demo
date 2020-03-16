@@ -72,6 +72,8 @@
 
 
 APP_TIMER_DEF(m_blink_timer);
+APP_TIMER_DEF(m_charge_timer);
+
 static uint32_t m_blink_count;
 static uint32_t m_blink_mask;
 static uint32_t m_prev_state;
@@ -85,26 +87,28 @@ static led_state=0;
 static void led_timeout_handler(void * p_context)
 {
     APP_ERROR_CHECK_BOOL(m_blink_count > 0);
-        if (led_state)
-        {
-            APP_ERROR_CHECK(drv_ext_light_off(1));
-            led_state=0;
-        }
-        else
-        {
-            APP_ERROR_CHECK(drv_ext_light_on(1));
-            led_state=1;
-        }
-
-
+    if (led_state)
+    {
+        APP_ERROR_CHECK(drv_ext_light_off(1));
+        led_state=0;
+    }
+    else
+    {
+        APP_ERROR_CHECK(drv_ext_light_on(1));
+        led_state=1;
+    }
     m_blink_count--;
     if (m_blink_count == 0)
     {
         (void) app_timer_stop(m_blink_timer);
-         APP_ERROR_CHECK(drv_ext_light_off(1));
+        //if(led_state) APP_ERROR_CHECK(drv_ext_light_off(1));
     }
 }
 
+static void charge_timeout_handler(void * p_context)
+{  m_blink_count=2;
+   app_timer_start(m_blink_timer, APP_TIMER_TICKS(20), NULL);
+}
 
 void hal_led_blink_ms( uint32_t delay_ms, uint32_t blink_count)
 {
@@ -134,13 +138,9 @@ bool hal_led_pin_get(void)
 
 void hal_leds_init(void)
 {
- /*   for (uint32_t i = LED_START; i <= LED_STOP; ++i)
-    {
-        NRF_GPIO->PIN_CNF[i] = LED_PIN_CONFIG;
-        NRF_GPIO->OUTSET = 1UL << i;
-    }*/
-
     APP_ERROR_CHECK(app_timer_create(&m_blink_timer, APP_TIMER_MODE_REPEATED, led_timeout_handler));
+    APP_ERROR_CHECK(app_timer_create(&m_charge_timer, APP_TIMER_MODE_REPEATED, charge_timeout_handler));
+   
 }
 
 void hal_led_pin_set(bool value)
@@ -148,10 +148,12 @@ void hal_led_pin_set(bool value)
     if (value)
     {
         APP_ERROR_CHECK(drv_ext_light_on(1));
+        led_state= 1;
     }
     else
     {
         APP_ERROR_CHECK(drv_ext_light_off(1));
+        led_state= 0;
     }
 }
 void led_breath_red(void)
@@ -166,4 +168,26 @@ void led_breath_red(void)
     seq.sequence_vals.fade_out_time_ms = 400; 
     APP_ERROR_CHECK(drv_ext_light_rgb_sequence(1, &seq));
         
+}
+void led_breath_yellow(void)
+{
+    drv_ext_light_rgb_sequence_t seq=SEQUENCE_DEFAULT_VALUES;
+    seq.color = DRV_EXT_LIGHT_COLOR_YELLOW;
+    seq.sequence_vals.on_time_ms = 500;
+    seq.sequence_vals.on_intensity = 0xFF;
+    seq.sequence_vals.off_time_ms = 40;
+    seq.sequence_vals.off_intensity =5;
+    seq.sequence_vals.fade_in_time_ms = 400;
+    seq.sequence_vals.fade_out_time_ms = 400; 
+    APP_ERROR_CHECK(drv_ext_light_rgb_sequence(1, &seq));
+        
+}
+
+void charging_indicate_start(void)
+{
+    (void) app_timer_start(m_charge_timer, APP_TIMER_TICKS(2000), NULL);
+}
+void charging_indicate_stop(void)
+{
+    (void) app_timer_stop(m_charge_timer);
 }

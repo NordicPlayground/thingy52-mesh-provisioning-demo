@@ -79,9 +79,20 @@
 #define ONOFF_SERVER_0_LED          (BSP_LED_0)
 #define APP_ONOFF_ELEMENT_INDEX     (0)
 #define THINGY_BUTTON 11
+#define USBCHARGE_PIN 13
 #define BUTTON_PIN_CONFIG ((GPIO_PIN_CNF_SENSE_Low << GPIO_PIN_CNF_SENSE_Pos)     | \
                            (GPIO_PIN_CNF_DRIVE_S0S1 << GPIO_PIN_CNF_DRIVE_Pos)    | \
                            (BUTTON_PULL << GPIO_PIN_CNF_PULL_Pos)                 | \
+                           (GPIO_PIN_CNF_INPUT_Connect << GPIO_PIN_CNF_INPUT_Pos) | \
+                           (GPIO_PIN_CNF_DIR_Input << GPIO_PIN_CNF_DIR_Pos))
+#define USBCHARGE_PIN_CONFIG_HIGH ((GPIO_PIN_CNF_SENSE_High << GPIO_PIN_CNF_SENSE_Pos)     | \
+                           (GPIO_PIN_CNF_DRIVE_S0S1 << GPIO_PIN_CNF_DRIVE_Pos)    | \
+                           (NRF_GPIO_PIN_PULLDOWN << GPIO_PIN_CNF_PULL_Pos)                 | \
+                           (GPIO_PIN_CNF_INPUT_Connect << GPIO_PIN_CNF_INPUT_Pos) | \
+                           (GPIO_PIN_CNF_DIR_Input << GPIO_PIN_CNF_DIR_Pos))
+#define USBCHARGE_PIN_CONFIG_LOW ((GPIO_PIN_CNF_SENSE_Low << GPIO_PIN_CNF_SENSE_Pos)     | \
+                           (GPIO_PIN_CNF_DRIVE_S0S1 << GPIO_PIN_CNF_DRIVE_Pos)    | \
+                           (NRF_GPIO_PIN_PULLDOWN << GPIO_PIN_CNF_PULL_Pos)                 | \
                            (GPIO_PIN_CNF_INPUT_Connect << GPIO_PIN_CNF_INPUT_Pos) | \
                            (GPIO_PIN_CNF_DIR_Input << GPIO_PIN_CNF_DIR_Pos))
 #define APP_UNACK_MSG_REPEAT_COUNT   (2)
@@ -95,6 +106,7 @@ static bool m_on_off_button_flag= 0;
 static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool onoff);
 static void app_onoff_server_get_cb(const app_onoff_server_t * p_server, bool * p_present_onoff);
 static generic_onoff_client_t m_client;
+static uint8_t USB_connected=0;
 /* Generic OnOff server structure definition and initialization */
 APP_ONOFF_SERVER_DEF(m_onoff_server_0,
                      APP_CONFIG_FORCE_SEGMENTATION,
@@ -123,6 +135,7 @@ static void app_onoff_server_set_cb(const app_onoff_server_t * p_server, bool on
 
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Setting GPIO value: %d\n", onoff)
     hal_led_pin_set(onoff);
+
     
 }
 
@@ -318,19 +331,11 @@ static void board_init(void)
     err_code = support_func_configure_io_startup(&ext_gpio_init);
     APP_ERROR_CHECK(err_code);
 }
-uint32_t hal_buttons_init(void)
-{
-   
-    NRF_GPIO->PIN_CNF[THINGY_BUTTON] = BUTTON_PIN_CONFIG;
-   
-    NRF_GPIOTE->INTENSET = GPIOTE_INTENSET_PORT_Msk;
-    NRF_GPIOTE->EVENTS_PORT  = 0;
 
-    NVIC_SetPriority(GPIOTE_IRQn, GPIOTE_IRQ_LEVEL);
-    NVIC_EnableIRQ(GPIOTE_IRQn);
-    return NRF_SUCCESS;
+/**************************************************************************
+/* Handle GPIO interrupt, either button press or USB cable connected
+/**************************************************************************/
 
-}
 void GPIOTE_IRQHandler(void)
 {
     NRF_GPIOTE->EVENTS_PORT = 0;
@@ -339,13 +344,46 @@ void GPIOTE_IRQHandler(void)
          * NOTE: There is a bug with this at the wrap-around for the RTC0 where the button could be
          * pressed before HAL_BUTTON_PRESS_FREQUENCY has passed a single time. It doesn't matter practically.
          */
- 
-   if( TIMER_DIFF(m_last_button_press, NRF_RTC0->COUNTER) > HAL_BUTTON_PRESS_FREQUENCY)
-    {
-      __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Buttonpressed\n");
-        m_last_button_press = NRF_RTC0->COUNTER;
-        button_event_handler(0);
+
+  __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "event\n");
+  if (USB_connected!=nrf_gpio_pin_read(USBCHARGE_PIN))
+   {
+       USB_connected = nrf_gpio_pin_read(USBCHARGE_PIN);
+       if (USB_connected)
+       {
+        //  hal_led_blink_ms(50,2);
+          NRF_GPIO->PIN_CNF[USBCHARGE_PIN] = USBCHARGE_PIN_CONFIG_LOW;
+          if (!hal_led_pin_get()) 
+          {
+              led_breath_yellow();
+          }
+          else
+          {
+              charging_indicate_start();
+           }
+       }
+       else
+       {
+       //    hal_led_blink_ms(50,2);
+          NRF_GPIO->PIN_CNF[USBCHARGE_PIN] = USBCHARGE_PIN_CONFIG_HIGH;
+          charging_indicate_stop();
+          //if LED is off, maybe we are breathing yellow, stop breathing
+          if(!hal_led_pin_get())hal_led_pin_set(0);
+       }
+
     }
+    else
+    {
+          
+       if( TIMER_DIFF(m_last_button_press, NRF_RTC0->COUNTER) > HAL_BUTTON_PRESS_FREQUENCY)
+        {
+          __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "Buttonpressed\n");
+            m_last_button_press = NRF_RTC0->COUNTER;
+            button_event_handler(0);
+        }
+        if(USB_connected)charging_indicate_start();
+      }
+
     
 }
 
@@ -388,10 +426,18 @@ uint32_t m_my_ui_init( void)
     nrf_gpio_pin_clear(MOS_2);
     nrf_gpio_pin_clear(MOS_3);
     nrf_gpio_pin_clear(MOS_4);
-    
- 
+    //Button and charge detect pin. 
+   NRF_GPIO->PIN_CNF[THINGY_BUTTON] = BUTTON_PIN_CONFIG;
+    NRF_GPIO->PIN_CNF[USBCHARGE_PIN] = USBCHARGE_PIN_CONFIG_HIGH;
+  
+    NRF_GPIOTE->INTENSET = GPIOTE_INTENSET_PORT_Msk;
+    NRF_GPIOTE->EVENTS_PORT  = 0;
 
+    NVIC_SetPriority(GPIOTE_IRQn, GPIOTE_IRQ_LEVEL);
+    NVIC_EnableIRQ(GPIOTE_IRQn);
 
+    USB_connected= nrf_gpio_pin_read(USBCHARGE_PIN);
+   // if (USB_connected) led_breath_yellow();
     return NRF_SUCCESS;
 }
 static void provisioning_blink_output_cb(uint8_t * number)
@@ -424,7 +470,7 @@ static void initialize(void)
 {
     __LOG_INIT(LOG_SRC_APP | LOG_SRC_FRIEND, LOG_LEVEL_DBG1, LOG_CALLBACK_DEFAULT);
     __LOG(LOG_SRC_APP, LOG_LEVEL_INFO, "----- Thingy Provisioning Demo -----\n");
-
+   
     ERROR_CHECK(app_timer_init());
     hal_leds_init();
     ble_stack_init();
@@ -442,7 +488,7 @@ static void initialize(void)
 static void start(void)
 {
     rtt_input_enable(app_rtt_input_handler, RTT_INPUT_POLL_PERIOD_MS);
-    nrf_gpio_cfg_input(THINGY_BUTTON,GPIO_PIN_CNF_PULL_Pullup);
+    //nrf_gpio_cfg_input(THINGY_BUTTON,GPIO_PIN_CNF_PULL_Pullup);
     if (!m_device_provisioned)
     {
         static const uint8_t static_auth_data[NRF_MESH_KEY_SIZE] = STATIC_AUTH_DATA;
@@ -457,7 +503,10 @@ static void start(void)
             .p_device_uri = EX_URI_LS_SERVER
         };
         ERROR_CHECK(mesh_provisionee_prov_start(&prov_start_params));
-        led_breath_red();
+        if(!USB_connected) 
+        {
+            led_breath_red();
+        }
 
     }
     else
@@ -473,9 +522,14 @@ static void start(void)
             nrf_delay_ms(500);
             node_reset();
         }
-       
+   
         
-      hal_led_blink_ms(100,2);
+     if(!USB_connected)
+     {
+     
+        hal_led_blink_ms(100,2);
+     }
+        
     }
    
     mesh_app_uuid_print(nrf_mesh_configure_device_uuid_get());
@@ -487,12 +541,12 @@ static void start(void)
 }
 
 
-
 int main(void)
-{
+{  
     initialize();
     start();
-   hal_buttons_init();
+   
+ 
     for (;;)
     {
         (void)sd_app_evt_wait();
