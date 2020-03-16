@@ -23,7 +23,7 @@ User can clear provisioning information of a node (reset the node) by holding th
 
 - Breathing Red: Thingy is not provisioned and has not joined the network
 - Breathing Yellow: Thingy is charging with USB. 
-- Blink shortly when in operation: Thingy is charging when in opearation. 
+- LED flash quickly every 5 seconds when in operation: Thingy is charging when in opearation. 
 - Blink white once: Thingy has been configured and has either a subscription/publication address.  (TBD)
 - Blink several times: It's the OOB authentication, please type the number of blink to the app when asked. 
 - Turn on or off solid White: Thingy in normal operation, light is turn off or on. 
